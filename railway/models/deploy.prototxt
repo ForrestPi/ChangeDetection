@@ -1,0 +1,634 @@
+input: "data"
+input_dim: 1
+input_dim: 2
+input_dim: 1024
+input_dim: 2048
+
+# convolution 1 (input: 150x100, output: 150x100)(multiplications:12960000)--------------------------------
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 1
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv1"
+  type: "ReLU"
+  bottom: "conv1"
+  top: "conv1"
+}
+# convolution 2 (input: 150x100, output: 75x50)(multiplications:34560000)--------------------------
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "conv1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+
+layer {
+  name: "relu_conv2"
+  type: "ReLU"
+  bottom: "conv2"
+  top: "conv2"
+}
+# convolution 3 (input: 75x50, output: 38x25)(multiplications:8755200)-----------------------------
+layer {
+  name: "conv3"
+  type: "Convolution"
+  bottom: "conv2"
+  top: "conv3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv3"
+  type: "ReLU"
+  bottom: "conv3"
+  top: "conv3"
+}
+# convolution 4 (input: 38x25, output: 19x13)(multiplications:2276352)----------------------------------
+layer {
+  name: "conv4"
+  type: "Convolution"
+  bottom: "conv3"
+  top: "conv4"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv4"
+  type: "ReLU"
+  bottom: "conv4"
+  top: "conv4"
+}
+# convolution 5 (input: 19x13, output: 10x7)(multiplications:645120)----------------------------------
+layer {
+  name: "conv5"
+  type: "Convolution"
+  bottom: "conv4"
+  top: "conv5"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv5"
+  type: "ReLU"
+  bottom: "conv5"
+  top: "conv5"
+}
+# convolution 6 (input: 10x7, output: 5x4)(multiplications:184320)----------------------------------
+layer {
+  name: "conv6"
+  type: "Convolution"
+  bottom: "conv5"
+  top: "conv6"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_size: 3
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv6"
+  type: "ReLU"
+  bottom: "conv6"
+  top: "conv6"
+}
+# convolution 7 (input: 5x4, output: 3x2)----------------------------------
+layer {
+  name: "conv7"
+  type: "Convolution"
+  bottom: "conv6"
+  top: "conv7"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 64
+    kernel_size: 3
+    pad: 0
+    stride: 1
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv7"
+  type: "ReLU"
+  bottom: "conv7"
+  top: "conv7"
+}
+# deconvolution 1 (input: 3x2, output: 5x4)(multiplications:)-----------------------------------------
+layer {
+  name: "deconv1"
+  type: "Deconvolution"
+  bottom: "conv7"
+  top: "deconv1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 3
+    kernel_w: 3
+    pad: 0
+    stride: 1
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv1"
+  type: "ReLU"
+  bottom: "deconv1"
+  top: "deconv1"
+}
+# fusion 1 ---------------------------------------------------------------------
+layer {
+  name: "fusion1"
+  type: "Concat"
+  bottom: "deconv1"
+  bottom: "conv6"
+  top: "fusion1_out"
+  concat_param {
+    axis: 1
+  }
+}
+
+
+# deconvolution 2 (input: 5x4, output: 10x7)----------------------------------------------------------
+layer {
+  name: "deconv2"
+  type: "Deconvolution"
+  bottom: "fusion1_out"
+  top: "deconv2"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 4
+    kernel_w: 4
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv2"
+  type: "ReLU"
+  bottom: "deconv2"
+  top: "deconv2"
+}
+# fusion 2 ---------------------------------------------------------------------
+layer {
+  name: "fusion2"
+  type: "Concat"
+  bottom: "deconv2"
+  bottom: "conv5"
+  top: "fusion2_out"
+  concat_param {
+    axis: 1
+  }
+}
+
+# deconvolution 3 (input: 10x7, output: 19x13)----------------------------------------------------------
+layer {
+  name: "deconv3"
+  type: "Deconvolution"
+  bottom: "fusion2_out"
+  top: "deconv3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 4
+    kernel_w: 4
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv3"
+  type: "ReLU"
+  bottom: "deconv3"
+  top: "deconv3"
+}
+# fusion 3 ---------------------------------------------------------------------
+layer {
+  name: "fusion3"
+  type: "Concat"
+  bottom: "deconv3"
+  bottom: "conv4"
+  top: "fusion3_out"
+  concat_param {
+    axis: 1
+  }
+}
+
+# deconvolution 4 (input: 19x13, output: 38x25)----------------------------------------------------------
+layer {
+  name: "deconv4"
+  type: "Deconvolution"
+  bottom: "fusion3_out"
+  top: "deconv4"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 4
+    kernel_w: 4
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv4"
+  type: "ReLU"
+  bottom: "deconv4"
+  top: "deconv4"
+}
+
+# fusion 4 ---------------------------------------------------------------------
+layer {
+  name: "fusion4"
+  type: "Concat"
+  bottom: "deconv4"
+  bottom: "conv3"
+  top: "fusion4_out"
+  concat_param {
+    axis: 1
+  }
+}
+
+# deconvolution 5 (input: 38x25, output: 75x50)----------------------------------------------------------
+layer {
+  name: "deconv5"
+  type: "Deconvolution"
+  bottom: "fusion4_out"
+  top: "deconv5"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 32
+    kernel_h: 4
+    kernel_w: 4
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv5"
+  type: "ReLU"
+  bottom: "deconv5"
+  top: "deconv5"
+}
+# fusion 5 ---------------------------------------------------------------------
+layer {
+  name: "fusion5"
+  type: "Concat"
+  bottom: "deconv5"
+  bottom: "conv2"
+  top: "fusion5_out"
+  concat_param {
+    axis: 1
+  }
+}
+
+# deconvolution 6 (input: 75x50, output: 150x100)----------------------------------------------------------
+layer {
+  name: "deconv6"
+  type: "Deconvolution"
+  bottom: "fusion5_out"
+  top: "deconv6"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 64
+    kernel_h: 4
+    kernel_w: 4
+    pad: 1
+    stride: 2
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_deconv6"
+  type: "ReLU"
+  bottom: "deconv6"
+  top: "deconv6"
+}
+# conv fusion 6 ----------------------------------------------------------
+layer {
+  name: "conv_fusion6"
+  type: "Convolution"
+  bottom: "deconv6"
+  top: "conv_fusion6"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 64
+    kernel_h: 1
+    kernel_w: 1
+    pad: 0
+    stride: 1
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+layer {
+  name: "relu_conv_fusion6"
+  type: "ReLU"
+  bottom: "conv_fusion6"
+  top: "conv_fusion6"
+}
+
+# loss-----------------------------------------------------------------
+layer {
+  name: "seg-score"
+  type: "Convolution"
+  bottom: "conv_fusion6"
+  top: "seg-score"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 1
+    kernel_size: 1
+    pad: 0
+    stride: 1
+    weight_filler {
+      #type: "xavier"
+      type: "gaussian"
+      mean: 0
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+    
+  }
+}
+
+layer {
+  name: "sigmoid"
+  type: "Sigmoid"
+  bottom: "seg-score"
+  top: "seg-score"
+}
+
