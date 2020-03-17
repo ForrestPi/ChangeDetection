@@ -7,3 +7,6 @@ use Change Detection to find differences
 
 ## solar plane
 [solar](./solarPanel/readme.md)
+
+## algorithms
+[algo](./algo/readme.md)
